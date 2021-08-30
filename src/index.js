@@ -9,6 +9,7 @@
 // Babylon.js - Games for THREE.js
 
 const THREE = require("three");
+const orbit = require("three-orbitcontrols");
 
 function createRenderer() {
   let renderer = new THREE.WebGL1Renderer({ antialias: true });
@@ -100,6 +101,8 @@ let lightHelper = createLightHelper(light);
 let cube = createCube();
 let sphere = createSphere();
 
+let controls = new orbit(camera, renderer.domElement);
+
 sphere.position.x = 20;
 
 light.position.x = 10;
@@ -117,7 +120,7 @@ for (let i = 1; i <= cubeCounts; i += 1) {
   cubes.push(c);
 }
 
-scene.add(axesHelper, lightHelper);
+//scene.add(axesHelper, lightHelper);
 scene.add(cube, sphere, light, ...cubes);
 
 renderer.render(scene, camera);
