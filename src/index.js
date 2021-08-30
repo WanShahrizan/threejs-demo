@@ -50,22 +50,38 @@ function createCube() {
   //Geometry - The Actuall shape
   let geometry = new THREE.BoxGeometry(6.5, 6.5, 6.5);
   //Material - The colour
-  let material = new THREE.MeshLambertMaterial({ color: "tomato" });
+  let material = new THREE.MeshLambertMaterial({ color: getRandomColour() });
   //Create a mesh by combine material and geometry
   let mesh = new THREE.Mesh(geometry, material);
   //return it so we can add it to the scene
   return mesh;
 }
 
+function getRandomColour() {
+  let colors = [
+    "dodgerblue",
+    "tomato",
+    "limegreen",
+    "rebeccapurple",
+    "gold",
+    "lavender",
+    "lightcoral",
+    "papayawhip",
+  ];
+
+  let randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
+
 function createSphere() {
   let geometry = new THREE.SphereGeometry(4, 30, 30);
-  let material = new THREE.MeshLambertMaterial({ color: "dodgerblue" });
+  let material = new THREE.MeshLambertMaterial({ color: getRandomColour() });
   let mesh = new THREE.Mesh(geometry, material);
   return mesh;
 }
 
 function createLight() {
-  let light = new THREE.PointLight("white", 1);
+  let light = new THREE.PointLight("white", 1.2);
   return light;
 }
 
