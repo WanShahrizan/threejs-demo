@@ -106,12 +106,33 @@ light.position.x = 10;
 light.position.y = 10;
 light.position.z = 10;
 
+let cubes = [];
+let cubeCounts = 500;
+
+for (let i = 1; i <= cubeCounts; i += 1) {
+  let c = createCube();
+  c.position.x = Math.random() * 400 - 200;
+  c.position.y = Math.random() * 400 - 200;
+  c.position.z = Math.random() * 400 - 200;
+  cubes.push(c);
+}
+
 scene.add(axesHelper, lightHelper);
-scene.add(cube, sphere, light);
+scene.add(cube, sphere, light, ...cubes);
 
 renderer.render(scene, camera);
 
 function animate() {
+  cube.rotation.x += 0.1;
+  cube.rotation.y += 0.1;
+  cube.rotation.z += 0.1;
+
+  cubes.forEach(function (c) {
+    c.rotation.x -= 0.01;
+    c.rotation.y -= 0.01;
+    c.rotation.z -= 0.01;
+  });
+
   //   cube.position.y += 0.1;
   //   cube.rotation.z += 0.1;
   //Make sure to re-render it
